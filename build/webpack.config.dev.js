@@ -2,14 +2,12 @@ const merge = require("webpack-merge");
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const commonConfig = require("./webpack.config.common.js");
 
 const devConfig = {
   mode: "development",
   devtool: "source-map", // 开启调试
-  entry: {
-    app: "./src/app.js"
-  },
   output: {
     publicPath: "/",
     filename: "[name].bundle.js",
