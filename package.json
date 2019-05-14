@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"start": "http-server dist",
-		"dev": "webpack-dev-server --open --config ./build/webpack.config.dev.js",
+		"dev": "webpack-dev-server --open --jsx --config ./build/webpack.config.dev.js",
 		"build": "webpack  --config ./build/webpack.config.prod.js"
 	},
 	"dependencies": {
@@ -16,10 +16,17 @@
 		"node-sass": "^4.12.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.1",
 		"react": "^16.8.6",
-		"react-dom": "^16.8.6"
+		"react-dom": "^16.8.6",
+		"react-redux": "^7.0.3",
+		"redux": "^4.0.1",
+		"typesafe-actions": "^4.3.0"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.14.126",
+		"@types/node": "^12.0.0",
+		"@types/react": "^16.8.15",
+		"@types/react-dom": "^16.8.4",
+		"@types/react-redux": "^7.0.8",
 		"autoprefix": "^1.0.1",
 		"autoprefixer": "^9.5.1",
 		"babel-loader": "^8.0.5",
