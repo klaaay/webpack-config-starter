@@ -11,6 +11,7 @@ module.exports = {
 		path: path.resolve(__dirname, "..", "dist"),
 	},
 	resolve: {
+		extensions: [".ts", ".tsx", ".js", ".json"],
 		alias: {
 			"@": path.resolve(__dirname, "..", "src"),
 		},
@@ -28,11 +29,9 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/, // 使用正则来匹配 js 文件
-				exclude: /node_modules/, // 排除依赖包文件夹
-				use: {
-					loader: "babel-loader", // 使用 babel-loader
-				},
+				test: /\.tsx?$/,
+				use: "ts-loader",
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.(sa|sc|c)ss$/,
@@ -98,11 +97,6 @@ module.exports = {
 						},
 					},
 				],
-			},
-			{
-				test: /\.ts?$/,
-				use: "ts-loader",
-				exclude: /node_modules/,
 			},
 		],
 	},
