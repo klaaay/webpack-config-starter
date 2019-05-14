@@ -7,7 +7,7 @@ import click from "@/click";
 import "@/styles/base.css";
 import "@/styles/main.scss";
 
-import "@/fonts/iconfont.css";
+import "@/styles/fonts/iconfont.css";
 
 // console.log(a);
 

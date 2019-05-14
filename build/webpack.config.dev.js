@@ -26,7 +26,7 @@ const devConfig = {
     new webpack.NamedModulesPlugin()
   ],
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "..", "public"),
     port: 8000, // 本地服务器端口号
     hot: true, // 热重载
     overlay: true, // 如果代码出错，会在浏览器页面弹出“浮动层”。类似于 vue-cli 等脚手架
