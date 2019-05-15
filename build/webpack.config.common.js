@@ -4,14 +4,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	entry: {
-		app: "./src/index.tsx",
+		app: "./src/index.jsx",
 	},
 	output: {
 		// publicPath: "./",
 		path: path.resolve(__dirname, "..", "dist"),
 	},
 	resolve: {
-		extensions: [".ts", ".tsx", ".js", ".json"],
+		extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
 		alias: {
 			"@": path.resolve(__dirname, "..", "src"),
 		},
@@ -28,6 +28,13 @@ module.exports = {
 	],
 	module: {
 		rules: [
+			{
+				test: /\.jsx?$/, // 使用正则来匹配 js 文件
+				exclude: /node_modules/, // 排除依赖包文件夹
+				use: {
+					loader: "babel-loader", // 使用 babel-loader
+				},
+			},
 			{
 				test: /\.tsx?$/,
 				use: [
@@ -68,22 +75,6 @@ module.exports = {
 							name: "[name]-[hash:5].min.[ext]",
 							limit: 1000, // size <= 1KB
 							outputPath: "images/",
-						},
-					},
-					// img-loader for zip img
-					{
-						loader: "image-webpack-loader",
-						options: {
-							// 压缩 jpg/jpeg 图片
-							mozjpeg: {
-								progressive: true,
-								quality: 65, // 压缩率
-							},
-							// 压缩 png 图片
-							pngquant: {
-								quality: "65-90",
-								speed: 4,
-							},
 						},
 					},
 				],
