@@ -2,9 +2,13 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+let HappyPack = require("happypack");
+let os = require("os");
+let happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+
 module.exports = {
 	entry: {
-		app: "./src/index.jsx",
+		app: "./src/index.tsx",
 	},
 	output: {
 		// publicPath: "./",
@@ -25,25 +29,32 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			$: "jquery", // npm
 		}),
+		new HappyPack({
+			id: "babel",
+			loaders: [
+				{
+					loader: "babel-loader",
+				},
+			],
+			threadPool: happyThreadPool,
+		}),
 	],
 	module: {
 		rules: [
 			{
-				test: /\.jsx?$/, // 使用正则来匹配 js 文件
+				test: /\.(jsx?|tsx?)$/, // 使用正则来匹配 js 文件
 				exclude: /node_modules/, // 排除依赖包文件夹
-				use: {
-					loader: "babel-loader", // 使用 babel-loader
-				},
+				use: ["happypack/loader?id=babel"],
 			},
-			{
-				test: /\.tsx?$/,
-				use: [
-					{
-						loader: "ts-loader",
-					},
-				],
-				exclude: /node_modules/,
-			},
+			// {
+			// 	test: /\.tsx?$/,
+			// 	use: [
+			// 		{
+			// 			loader: "ts-loader",
+			// 		},
+			// 	],
+			// 	exclude: /node_modules/,
+			// },
 			{
 				test: /\.(sa|sc|c)ss$/,
 				use: [
